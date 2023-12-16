@@ -196,11 +196,11 @@ public function sort()
         case 'judul_asc':
             $order_by = 'judul ASC';
             break;
+        case 'tanggal_dsc':
+            $order_by = 'tanggal DSC';
+            break;
         case 'tanggal_asc':
             $order_by = 'tanggal ASC';
-            break;
-        case 'tanggal_desc':
-            $order_by = 'tanggal DESC';
             break;
         default:
             $order_by = 'judul ASC'; // Default pengurutan

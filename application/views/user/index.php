@@ -18,8 +18,8 @@
   <div class="input-group mb-3">
     <select name="sort" class="custom-select">
       <option value="judul_asc">Judul A-Z</option>
-      <option value="tanggal_asc">Tanggal Terlama</option>
       <option value="tanggal_desc">Tanggal Terbaru</option>
+      <option value="tanggal_asc">Tanggal Terlama</option>
     </select>
     <div class="input-group-append">
       <button class="btn btn-primary" type="submit">Urutkan</button>
