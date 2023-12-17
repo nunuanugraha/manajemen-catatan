@@ -90,20 +90,16 @@ class Dashboard extends CI_Controller {
 		redirect('dashboard/edit_catatan');
 	}
 	
-	public function delete_catatan()
+	public function delete_catatan($id)
 	{
-    $id = $this->input->post('id');
-
-    // Pastikan ID valid dan ada
-    if (!empty($id)) {
-        $this->M_Catatan->deleteCatatan($id);
-        // Tampilkan pesan sukses atau lakukan redirect
-        redirect('dashboard/edit_catatan');
-    } else {
-        // Tampilkan pesan error atau lakukan redirect
-        show_404();
-    }
+		$result = $this->M_Catatan->deleteCatatan($id);
+		if ($result) {
+			echo json_encode(['status' => 'success']);
+		} else {
+			echo json_encode(['status' => 'error']);
+		}
 	}
+	
 
 	
 	public function editCatatan($id)
@@ -122,16 +118,6 @@ class Dashboard extends CI_Controller {
 	}
 	
 	
-
-	public function users()
-	{
-		$data['title'] = "Admin";
-		$data['users'] = $this->M_Catatan->getAllUsersAdm();
-		$this->load->view('layout/header', $data);
-		$this->load->view('layout/sidebar', $data);
-		$this->load->view('admin/users', $data);
-		$this->load->view('layout/footer');	
-	}
 
 	public function search()
 {

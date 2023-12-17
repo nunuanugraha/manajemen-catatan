@@ -38,10 +38,11 @@ class M_Catatan extends CI_Model {
 	}
 
 	public function deleteCatatan($id)
-{
-    $this->db->where('id', $id);
-    $this->db->delete('tbl_catatan');
-}
+	{
+		$this->db->where('id', $id);
+		return $this->db->delete('tbl_catatan');
+	}
+	
 
 public function search_catatan($keyword, $limit, $start)
 {

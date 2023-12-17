@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Main Content -->
 <div class="main-content">
   <section class="section">
@@ -36,10 +38,8 @@
                       <a href="<?= base_url('dashboard/edit_catatan/' . $c['id']); ?>" class="btn btn-info btn-xs" data-original-title="Ubah" data-placement="top" data-toggle="tooltip"><i class="fa fa-edit"></i></a>
                           </td>
                           <td class="text-center">
-                          <form action="<?php echo base_url('dashboard/delete_catatan') ?>" method="post">
-                          <input type="hidden" name="id" value="<?= $c['id']; ?>">
-                          <button class="btn btn-danger btn-xs btn-delete" type="submit" data-original-title="delete" data-placement="top" data-toggle="tooltip"><i class="fas fa-trash"></i></button>
-                          </form>
+                          <button class="btn btn-danger btn-xs btn-delete" data-id="<?= $c['id']; ?>" data-original-title="delete" data-placement="top" data-toggle="tooltip"><i class="fas fa-trash"></i></button>
+                        </td>
                     </tr>
                   <?php endforeach; ?>
                   </tbody>
@@ -52,4 +52,27 @@
     </div>
   </section>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('.btn-delete').on('click', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
       
+      if(confirm('Apakah Anda yakin ingin menghapus catatan ini?')) {
+        $.ajax({
+          url: '<?= base_url('dashboard/delete_catatan/'); ?>' + id,
+          type: 'POST',
+          data: { id: id },
+          success: function(response) {
+            alert('Catatan berhasil dihapus');
+            location.reload();
+          },
+          error: function() {
+            alert('Gagal menghapus catatan');
+          }
+        });
+      }
+    });
+  });
+</script>      
